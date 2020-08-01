@@ -1,0 +1,263 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+  body{
+	  background-color:#E7E2E6;
+	  width:1000px;
+	  
+	  
+  }
+  *{
+	  margin:0 auto;
+	  padding:0;
+	  font-size:14px;
+	  font-family:'宋体';
+  }
+  li{
+	  list-style:none;
+	  
+  }
+  a{
+	  text-decoration:none;
+  }
+  header{
+	  height:120px;
+	  background:white;
+	  
+	  text-align:center;
+	  color:#FFF;
+  }
+  .title{
+	  font-size:30px;
+	  position:relative;
+	  top:20px;
+	  left:150px;
+  }
+
+  article{
+	  background-color:#FFF;
+	  height:640px;
+	  width:100%;
+  }
+  article .c_t{
+	  height:260px;
+  }
+  .t_l{
+	  width:300px;
+	  height:220px;
+	  float:left;
+	  background-color:#44A4F6;
+	  margin-top:10px;
+  }
+  .t_l p{
+	  color:#FFF;
+	  font-size:16px;
+	  padding:5px 0 5px 15px;
+	  
+  }
+  .t_l form{
+	  background-color:#FFF;
+	  width:90%;
+	  height:180px;
+	  text-align:center;
+  }
+  .t_l ul li{
+	  width:90%;
+	  padding-top:20px;
+	  color:#769BFB;
+  }
+  .t_l .inp{
+	  border:1px solid #3D9BF7;
+	  width:160px;
+	  height:20px;
+  }
+  .btn1,.btn2{
+	  background-color:#03F;
+	  border-radius:10px;
+	  padding:5px 15px;
+	  
+  }
+  .btn2{
+	  margin-left:40px;
+  }
+  
+  
+  .c_t .t_r{
+	  width:670px;
+	  height:220px;
+	  float:right;
+	  background-color:#01CFFF;
+	  margin-top:10px;
+  }
+  .r_pic{
+	  width:65%;
+	  height:196px;
+	  float:left;
+	  margin:10px;
+  }
+   .r_pic img{
+	   width:100%;
+	   height:100%;
+	   
+   }
+   .r_img{
+	   width:30%;
+	   height:196px;
+	   float:right;
+   }
+   .r_img p{
+	   color:#FFF;
+	   font-size:16px;
+	   margin:5px 0;
+	   
+   }
+   .r_img ul li{
+	   float:left;
+	   margin:10px 10px 0 0;
+   }
+   .r_img img{
+	   width:90px;
+	   height:76px;
+   }
+   .c_b{
+	   height:320px;
+   }
+   .c_b .b_l{
+	   width:300px;
+	   float:left;
+   }
+   .c_b .b_l p{
+	   font-weight:bold;
+	   color:#3497EA;
+	   text-indent:10px;
+	   border-bottom:3px solid #008CEC;
+	   padding-bottom:5px;
+   }
+   .b_l ul li{
+	   background-color:#01BEFF;
+	   text-align:center;
+	   width:100px;
+	   height:25px;
+	   line-height:25px;
+	   float:left;
+	   margin:20px 20px 5px 25px;
+	   border-radius:10px;
+   }
+   .b_l a{
+	   color:#FFF;
+   }
+    .c_b .b_r{
+	   width:670px;
+	   float:right;
+   }
+   .c_b .b_r p{
+	   font-weight:bold;
+	   color:#3497EA;
+	   text-indent:10px;
+	   border-bottom:3px solid #008CEC ;
+	  
+	   padding-bottom:5px;
+   }
+   .c_b .b_r p a{
+	   font-weight:bold;
+	   color:#3497EA;
+	  float:right;
+	   
+   }
+   .b_r ul li{
+	   background-color:#FFF;
+	   text-align:center;
+	   width:330px;
+	   height:33px;
+	   line-height:33px;
+	   float:left;
+	 
+	  
+	   
+	  
+   }
+    .b_r a{
+	  
+	   border-bottom:2px dotted #008CEC ;
+	  
+	   padding-bottom:5px;
+   }
+   .b_r .sp1 {
+	   color:#008CEC;
+	   margin-left:8px;
+	  margin-right:60px;
+   }
+   .b_r .sp2{
+	   color:#000;
+	  
+   }
+   
+  footer{
+	  background-color:#BEEFFE;
+	  height:70px;
+	  width:100%;
+	  text-align:center;
+  }
+  footer li{
+	  height:30px;
+	   text-align:center;
+	  
+	   
+	   line-height:30px;
+	   color:#1A8FF3;
+	   
+  }
+   
+  
+  
+</style>
+</head>
+
+<body>
+ <header>
+ <image src="products\1\cs10001.jpg" style="height:100px; width:100px"> 
+  
+ 
+ </header>
+ 
+
+ <article>
+ </article>
+ <footer>
+  <div >
+  <ul>
+    <li>Copyright&copy; <img src="images/yclogo.png">2004-2019 源辰信息科技有限公司 版权所有</li>
+    <li>地址：衡阳市蒸湘北路丽天名园905 联系方式：0734-8355998</li>
+  </ul>
+     
+  </div>
+ </footer>
+ <script>
+     var index=0;
+	 window.setInterval(function(){
+		 index++;
+	 if(index==6){
+		 index=0;
+	 }
+	 document.getElementById("pic").src= "images/pic_"+index+".jpg";
+	 },2000);
+ </script>
+</body>
+</html>
+
+
+
+
+
+	<div style="display:none">
+				<input class="easyui-textbox" name="image"  id="tbImg" label="图片"><br>
+				<input class="easyui-filebox" label="选择" id="file" name="file"
+				data-options="onChange:upload">
+			</div>
+			<label style="position:relative;bottom:90px;">图片</label>
+			
+			<img alt="" src="../products/1/cs60001.png" style="height:100px;margin-left:50px" id="upImg"
+				onclick="filebox_file_id_1.click()"><br>

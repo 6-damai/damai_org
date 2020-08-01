@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="back/easyui/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="back/easyui/themes/icon.css">
+	<script type="text/javascript" src="back/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="back/easyui/jquery.min.js"></script>
+	<script type="text/javascript" src="back/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="back/easyui/locale/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript">
+		var data = [{
+	        text: 'Item1',
+	        iconCls: 'icon-sum',
+	        state: 'open',
+	        children: [{
+	            text: 'Option1',
+	            url:'back/Orders.html'
+	        },{
+	            text: 'Option2',
+	            url:'back/product.html'
+	        },{
+	            text: 'Option3',
+	            url:'back/Careget.html'
+	        }]
+	    }];
+ 
+		function selectMenu(Item){
+			
+				if(	$('#tt').tabs('exists',Item.text)){
+					$('#tt').tabs('select',Item.text)
+				}else{
+					
+					$('#tt').tabs('add',{
+						title: Item.text,
+						selected: true,
+						content:"<iframe src=' "+Item.url+"' style='width:100%;height:100%;border:opx'></iframe>"
+						//...
+						//href:"../606/book1.html"
+					});
+					
+				}
+				
+			
+			
+		}
+	</script>
+</head>
+<body>
+<div class="easyui-layout" fit="true">
+		<div data-options="region:'north'" style="height:50px"></div>
+		<div data-options="region:'south',split:true" style="height:50px;"></div>
+		
+		<div class="easyui-accordion" data-options="region:'west',split:true" title="菜单" style="width:200px;">
+		
+		   
+		<div id="sm" class="easyui-sidemenu" title="数据维护" 
+		data-options="iconCls:'icon-ok',data:data,fit:true,onSelect:selectMenu" style="overflow:auto;padding:10px;">
+		
+		</div>
+		<div title="信息查询" data-options="iconCls:'icon-help'" style="padding:10px;">
+	
+		</div>
+		<div title="报表" data-options="iconCls:'icon-search'" style="padding:10px;">
+		
+		</div>
+	
+		</div>
+		<div   id="tt" class="easyui-tabs" data-options="region:'center',title:'功能区',iconCls:'icon-ok'">
+		
+			
+		</div>
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Basic Calendar - jQuery EasyUI Demo</title>
+	<link rel="stylesheet" type="text/css" href="easyui/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="easyui/themes/icon.css">
+	
+	<script type="text/javascript" src="easyui/jquery.min.js"></script>
+	<script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
+		<script type="text/javascript" src="easyui/locale/easyui-lang-zh_CN.js"></script>
+   <script type="text/javascript">
+       function fmtImg(value,row,index){
+    	   return "<img height='100px' src=' "+value+"'>";
+       }
+       
+       function fmtDate(date){
+    	   var y = date.getFullYear();
+    		var m = date.getMonth()+1;
+    		var d = date.getDate();
+    		return y+'-'+m+'-'+d;
+       }
+       function query(){
+    	   $('#dg').datagrid('load',{
+    			name:$("#name").textbox('getValue'),
+    			press:$("#press").textbox('getValue'),
+    			date:$("#date").textbox('getValue'),
+    		});
+       }
+       
+       
+       function fmtOp(value,row,index){
+    	   return "<button onclick='edit("+index+")'>修改</button>";
+       }
+       
+       
+       
+       
+       function add1(){
+  		 
+			$("#dd1").dialog('open');
+		 
+	 }
+	 
+	 function add(){ 
+		 $('#ff1').form('submit',{
+				url : "../addbookServlet.do",
+				success : res=>{
+					alert(res);
+					// 关闭窗口
+					$("#dd1").dialog('close');
+					// 刷新表格
+					$('#dg').datagrid("reload");
+				}
+			});
+	 }
+       function add(){
+    	   $('#dd').dialog('open');
+    	   $('#dg').datagrid('load',{
+   			name:$("#name").textbox('getValue'),
+   			press:$("#press").textbox('getValue'),
+   			date:$("#date").textbox('getValue'),
+   		});
+       }
+   
+    
+       
+       
+       function save(){
+    	   $('#ff').form('submit',{
+    		   url:"../savebookServlet.do",
+    		   success:res=>{
+    			   alert(res);
+    			   $('#dd').dialog('close'); 
+    			   $('#dg').datagrid('reload');
+    		   }
+    	   
+    	   } );
+       }
+       
+    
+       
+       
+       
+       function edit(index){
+    	   var rows=$('#dg').datagrid("getRows");
+    	   $('#dd').dialog('open');
+    	 
+    	   $('#ff').form('load',rows[index]);
+    	 
+       }
+       
+       function save(){
+    	   $('#ff').form('submit',{
+    		   url:"../savebookServlet.do",
+    		   success:res=>{
+    			   alert(res);
+    			   $('#dd').dialog('close'); 
+    			   $('#dg').datagrid('reload');
+    		   }
+    	   
+    	   } );
+       }
+       
+        
+   </script>
+</head>
+<body>
+
+    <div class="easyui-layout"  data-options="	fit:true">
+		<div data-options="region:'north'" style="height:50px" >
+		  <input  class="easyui-textbox" label="书名" id="name" style="width:200px">
+		    <input  class="easyui-textbox" label="出版社" id="press" style="width:200px">
+		     <input  class="easyui-datebox" label="出版日期：" id="date" 
+		     data-options="formatter:fmtDate" style="width:200px">
+		       
+	            <a id="btn" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search'" onclick="query()">查询</a>
+	            <a id="btn" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-add'" onclick="add()">增加</a>
+		</div>
+		
+		<div data-options="region:'center',title:'Main Title',iconCls:'icon-ok'">
+			<table class="easyui-datagrid" id="dg"
+					data-options="
+					url:'../querybookServlet.do',
+					method:'get',
+					border:false,
+					singleSelect:true,
+					fit:true,
+					fitColumns:true">
+				<thead>
+					<tr>
+						<th data-options="field:'bookid', width:80">Item ID</th>
+						<th data-options="field:'bookname',  width:80">Item ID</th>
+						<th data-options="field:'bookpress',  width:80">Item ID</th>
+						<th data-options="field:'pressdate',  width:80">Item ID</th>
+						<th data-options="field:'bookauthor',  width:80">Item ID</th>
+						<th data-options="field:'bookcount', width:80">Item ID</th>
+						<th data-options="field:'bookimage', width:80,formatter:fmtImg,align:'center'">Item ID</th>
+								<th data-options="field:'idd', width:80, formatter:fmtOp,align:'center'">操作 </th>
+								
+						
+					</tr>
+				</thead>
+			</table>
+		</div>
+	</div>
+	
+	
+	<div id="dd" class="easyui-dialog" title="My Dialog" style="width:400px;height:400px;"
+    data-options="iconCls:'icon-save',resizable:true,modal:true,closed:true,buttons:'#bb' ">
+    <form action="#" id="ff">
+   <input class="easyui-textbox" name="bookid" label="编号"><br>
+       <input  class="easyui-textbox" name="bookname" label="书名"><br>
+          <input  class="easyui-combobox" name="bookpress" label="出版社"
+          url="../getbookrpressItemsServlet.do"
+          valueField="bookpress"
+          textField="bookpress"><br>
+         <input class="easyui-datebox" name="pressdate" label="出版日期" data-options="formatter:fmtDate" ><br>
+           <input class="easyui-textbox" name="bookauthor" label="作者"><br>
+         <input  class="easyui-textbox" name="bookcount" label="库存"><br>
+         
+         <input  class="easyui-textbox" name="bookimage" label="图片"><br>
+        
+          </form>
+</div>
+
+
+
+	<!-- 图书添加窗口 -->
+	<div id="dd1" class="easyui-dialog" title="My Dialog"
+		style="width: 400px; height: 400px;"
+		data-options="
+	    iconCls:'icon-save',
+	    resizable:true,
+	    modal:true,
+	    closed:true,
+	    buttons:'#bb1'">
+		<form id="ff1">
+			<input class="easyui-textbox" label="书名:" style="width: 200px"
+				name="bookname"><br> <input class="easyui-combobox"7
+				name="bookpress" label="出版社" style="width: 200px"
+				url="../GetBookpressItemsServlet.do" valueField="bookpress"
+				textField="bookpress"><br> <input
+				class="easyui-datebox" name="pressdate" label="出版日期"
+				data-options="formatter:fmtDate" style="width: 200px"><br>
+			<input class="easyui-textbox" name="bookauthor" label="作者"
+				style="width: 200px"><br> <input class="easyui-textbox"
+				name="bookcount" label="库存" style="width: 200px"><br> <input
+				class="easyui-textbox" name="bookimage" label="图片"
+				style="width: 200px"><br>
+		</form>
+	</div>
+<div id="bb">
+    <a  href="#" class="easyui-linkbutton" onclick="save()">保存</a>
+    <a href="#" class="easyui-linkbutton" >放弃</a>
+</div>
+ 
+
+</body>
+</html>
+
+
+
+
+	<div id="dd" class="easyui-dialog" title="My Dialog"
+		style="width: 400px; height: 400px;"
+		data-options="
+	    iconCls:'icon-save',
+	    resizable:true,
+	    modal:true,
+	    closed:true,
+	    buttons:'#bb'">
+		<form id="ff">
+			<input class="easyui-textbox" label="编号"  name="id"  ><br> 
+			<input class="easyui-textbox" label="名称"  name="pname"><br> 
+			<input class="easyui-combobox"  label="分类"	name="cid"  
+			data-options="
+				url:'../CategoryServlet.do?op=query' valueField:'id'
+				textField:'cname'"><br>
+				<input class="easyui-numberbox" label="市场价"  name="marketPrice"><br> 
+				<input class="easyui-numberbox" label="商城价"  name="shopPrice"><br> 
+				<input class="easyui-textbox" label="描述"  name="pdesc"><br> 
+				<input class="easyui-textbox" label="热卖"  name="isHot"><br> 
+				<input class="easyui-textbox" label="图片"  name="image"><br> 
+			
+		</form>
+	</div>
